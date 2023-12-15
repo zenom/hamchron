@@ -1,6 +1,11 @@
 name: Build and Save Release
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'New tag name'
+        required: true
 
 jobs:
   build:
