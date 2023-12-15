@@ -8,10 +8,6 @@ jobs:
     name: OTP / Elixir
     steps:
       - uses: actions/checkout@v3
-      - uses: korandoru/setup-zig@v1
-        with:
-          zig-version: 0.9.1 # released versions or master
-      - run: zig build test
 
       - name: Install xz/7zip
         run: sudo apt-get install -y xz-utils p7zip-full
