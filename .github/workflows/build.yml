@@ -13,8 +13,8 @@ jobs:
       - name: Set up Elixir
         uses: actions/setup-elixir@v1
         with:
-          otp-version: '26.x'
-          elixir-version: '1.15.x'
+          otp-version: '26.2'
+          elixir-version: '1.15.7'
 
       - name: Install Dependencies
         run: mix deps.get
