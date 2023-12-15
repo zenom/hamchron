@@ -14,6 +14,9 @@ jobs:
           elixir-version: '1.15.7'
       - run: mix deps.get
 
+      - name: Install zig/xx/7zip
+        run: sudo apt-get install -y zig xz-utils p7zip-full
+
       - name: Build Release with Burrito
         run: MIX_ENV=prod mix release
 
