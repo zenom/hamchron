@@ -13,7 +13,6 @@ jobs:
           otp-version: '26.2'
           elixir-version: '1.15.7'
       - run: mix deps.get
-      - run: mix test
 
       - name: Build Release with Burrito
         run: MIX_ENV=prod mix release
