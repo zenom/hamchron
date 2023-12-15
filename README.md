@@ -1,4 +1,5 @@
 # Hamchron
+
 A simple clock that shows UTC and local time, shows space weather, spots from PSKReporter, gray line etc.,
 
 <img width="2547" alt="Screenshot 2023-12-15 at 1 59 00 PM" src="https://github.com/zenom/hamchron/assets/175725/52c798b2-edc9-42d1-bfc8-ceaf042cdee1">
@@ -12,6 +13,17 @@ I used [Burrito](https://github.com/burrito-elixir/burrito) to compile the binar
 Thanks to the creator of [Hamclock](https://www.clearskyinstitute.com/ham/HamClock/) for creating a great tool for inspiration.
 
 My Call: [NB8F](https://www.qrz.com/db/nb8f)
+
+# How to run
+
+- Go to releases and download the latest version.
+- You can run this a couple of ways. If you just want to test it out you can run.
+
+`PHX_SERVER=1 CALLSIGN=<YOURCALL> GRID_SQUARE=<YOUR_GRID> SECRET_KEY_BASE=<64 chars string> ./hamchron_(OS)_(ARCH)`
+
+You can also use the services file that is located in support to create a systemd service to run.
+
+- From here open a web browser and go to `http://localhost:8888` and you should see the web based hamchron.
 
 # Things I had to learn
 
