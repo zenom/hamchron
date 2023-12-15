@@ -1,0 +1,24 @@
+1. Convert genserver to task? Periodic, not sure we really need to save it.
+2. Store some basic params for the callsign etc., maybe that is all we use the db for?
+  - Store just the last space weather.
+3. Processor to handle XML for different things.
+4. Gather grid square and callsign on signup, allow for editing.
+5. Add QRZ api key to fetch
+6. Store it with Task.Supervisor.async_nolink #https://www.youtube.com/watch?v=Fv40UpQH1yw&t=283s
+7. Filter options to show only certain bands, modes.
+8. Fix why map does not autoload after failure/restart service.
+
+# can we use async_assigns to start, then set a timer for the task maybe?
+
+https://unix.stackexchange.com/questions/536340/proper-way-to-start-a-background-process
+[Unit]
+Description=My foo service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/node /absolute/path/to/your/server.js
+Restart=always
+User=nobody
+
+[Install]
+WantedBy=multi-user.target
