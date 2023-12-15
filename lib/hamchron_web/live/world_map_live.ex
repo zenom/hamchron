@@ -1,4 +1,8 @@
 defmodule WorldMapComponent do
+  @moduledoc """
+  Loads the hooks for the wolrd map.  The map and data is 
+  loaded in the hook and is all done in JS.
+  """
   use HamchronWeb, :live_component
 
   def mount(socket) do

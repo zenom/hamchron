@@ -1,4 +1,7 @@
 defmodule HamchronWeb.ChronoLive do
+  @moduledoc """
+  Primary entrypoint for the app. 
+  """
   use HamchronWeb, :live_view
   alias HamchronWeb.SunspotsComponent
   alias HamchronWeb.SunImageComponent

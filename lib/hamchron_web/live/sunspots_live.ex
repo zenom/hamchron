@@ -1,4 +1,8 @@
 defmodule HamchronWeb.SunspotsComponent do
+  @moduledoc """
+  Responsible for the side bar that contains things like
+  Sunspot, Solarflux, Noise etc.
+  """
   use HamchronWeb, :live_component
   alias Hamchron.Weather.Space
 

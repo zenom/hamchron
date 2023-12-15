@@ -1,4 +1,8 @@
 defmodule Hamchron.Processors.Weather do
+  @moduledoc """
+  This takes the xml that comes in from `Hamchron.Weather.async_fetch_data`
+  and builds up a map.
+  """
   import SweetXml
   require Logger
 

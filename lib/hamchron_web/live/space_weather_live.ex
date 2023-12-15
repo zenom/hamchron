@@ -1,4 +1,8 @@
 defmodule SpaceWeatherComponent do
+  @moduledoc """
+  Repsonsible for displaying the space weather square in the
+  top right.  It contains bhe bands and day/night stats.
+  """
   use HamchronWeb, :live_component
   alias Hamchron.Weather.Space
 

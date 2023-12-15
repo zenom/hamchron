@@ -1,4 +1,9 @@
 defmodule Hamchron.Weather do
+  @moduledoc """
+  Get the space weather from hamqsl, process it with `Hamchron.Processors.Weather`
+  and then broadcast the result to the "weather_updated" channel. It will write
+  the data to weather.dat.
+  """
   require Logger
   use HTTPoison.Base
   alias Hamchron.Processors.Weather

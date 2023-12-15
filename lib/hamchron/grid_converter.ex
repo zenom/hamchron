@@ -1,7 +1,22 @@
 defmodule GridConverter do
-  # Function to convert grid square to latitude and longitude
-  # EN82ao  - E, 8, a is longitude, N, 2, o is latitude
-  # write something to check this is at least 4 and then mathec grid_square
+  @moduledoc """
+  Convert a grid square like EN82ao to it's latitude and longitude.
+  
+  """
+
+  @doc """
+  Takes in a grid square that is at least 6 chars and returns the latitude and longitude.
+
+  ## Example:
+    iex> GridConverter.convert("EN82ao")
+    {:ok, 42.58333333333334, -84.0}
+
+    iex(2)> GridConverter.convert("EN82")
+    {:ok, 42.0, -84.0}
+
+    iex(3)> GridConverter.convert("a")
+    {:error, "unable to determine location"}
+  """
   def convert(grid_square) when is_binary(grid_square) and byte_size(grid_square) >= 6 do
     letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" |> String.codepoints()
 
@@ -28,7 +43,7 @@ defmodule GridConverter do
     {:error, "unable to determine location"}
   end
 
-  def base_conversion(grid_square) do
+  defp base_conversion(grid_square) do
     first_letter_vals = build_ranges()
     second_letter_vals = build_ranges(10, ?A..?X)
 
@@ -49,14 +64,14 @@ defmodule GridConverter do
     {final_lat, final_lon}
   end
 
-  def build_ranges(step \\ 20, letters \\ ?A..?R) do
+  defp build_ranges(step \\ 20, letters \\ ?A..?R) do
     for {letter, index} <- Enum.with_index(letters) do
       {List.to_string([letter]), (index * step)..((index + 1) * step)}
     end
     |> Map.new()
   end
 
-  def convert_lon(longitude_deg, longitude_min)
+  defp convert_lon(longitude_deg, longitude_min)
       when is_number(longitude_deg) and is_number(longitude_min) do
     total_longitude = longitude_deg + longitude_min / 60.0
 
@@ -72,7 +87,7 @@ defmodule GridConverter do
     end
   end
 
-  def convert_lat(latitude_deg, latitude_min)
+  defp convert_lat(latitude_deg, latitude_min)
       when is_number(latitude_deg) and is_number(latitude_min) do
     total_latitude = latitude_deg + latitude_min / 60.0
 

@@ -1,4 +1,8 @@
 defmodule TimeComponent do
+  @moduledoc """
+  Loads up the time component. This is all handled via javascript
+  and probably could be a regular component vs a live component.
+  """
   use HamchronWeb, :live_component
 
   def mount(socket) do

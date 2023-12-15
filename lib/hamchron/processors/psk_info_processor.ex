@@ -1,4 +1,15 @@
 defmodule Hamchron.Processors.PskInfoProcessor do
+  @moduledoc """
+  This taks in the raw data from PSKReporter, then parses it.  
+  It is in the format of XML and has thousands of rows that 
+  are a recently spotted contact.  This will parse each row, 
+  then convert their Maidenhead Grid to Lat/Long, label their
+  band based on frequency and then return a List of each of these
+  rows.
+
+  Example: [ {-84.293, 29.999, 'AB1CD', '160 Meters', 'FT8'}]
+
+  """
   import SweetXml
 
   @ham_bands %{
@@ -19,6 +30,12 @@ defmodule Hamchron.Processors.PskInfoProcessor do
     "33 Centimeters" => 902_000_000..928_000_000
   }
 
+  @doc """
+  Parses the XML returned from `Hamchron.PskReporter` 
+
+  Returns a List of tuples.
+
+  """
   def process(result) do
     data = SweetXml.xpath(result, ~x"//receptionReports/activeReceiver"l)
 
@@ -41,6 +58,18 @@ defmodule Hamchron.Processors.PskInfoProcessor do
     end)
   end
 
+  @doc """
+  Takes in a frequency string and converts it to its label
+  if it matches the `@ham_bands` plan above.
+
+  ## Examples
+    iex> Hamchron.PskInfoProcessor.bandName('14199000')
+    "20 Meters"
+
+    iex> Hamchron.PskInfoProcessor.bandName('999999999')
+    "999999999"
+
+  """
   def bandName(frequency_string) do
     case frequency_string |> Integer.parse() do
       {frequency, ""} ->

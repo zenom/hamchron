@@ -1,4 +1,8 @@
 defmodule HamchronWeb.SunImageComponent do
+  @moduledoc """
+  Responsible for the images of the sun that come from
+  NASA.  
+  """
   use HamchronWeb, :live_component
 
   def mount(_params, _session, socket) do

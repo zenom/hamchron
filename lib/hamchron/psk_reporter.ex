@@ -1,4 +1,11 @@
 defmodule Hamchron.PskReporter do
+  @moduledoc """
+  Fetch the latest data from PSKReporter.info.  Send it
+  to `Hamchron.Processors.PskInfoProcessor` to be parsed.
+
+  Then send the message that we have received the update along 
+  with the parsed result.
+  """
   require Logger
   use HTTPoison.Base
   alias Hamchron.Processors.PskInfoProcessor
@@ -22,9 +29,5 @@ defmodule Hamchron.PskReporter do
           {:error, reason}
       end
     end)
-  end
-
-  def testing() do
-    IO.puts("CALLED MODULE")
   end
 end
