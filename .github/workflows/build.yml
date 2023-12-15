@@ -8,19 +8,18 @@ jobs:
     name: OTP / Elixir
     steps:
       - uses: actions/checkout@v3
-      
       - uses: goto-bus-stop/setup-zig@v2
         run: zig build test
-        
-       - name: Install xx/7zip
+
+      - name: Install xz/7zip
         run: sudo apt-get install -y xz-utils p7zip-full
-        
+
       - uses: erlef/setup-beam@v1
         with:
           otp-version: '26.2'
           elixir-version: '1.15.7'
       - run: mix deps.get
-      
+
       - name: Build Release with Burrito
         run: MIX_ENV=prod mix release
 
