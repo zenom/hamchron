@@ -13,6 +13,7 @@ jobs:
     name: OTP / Elixir
     steps:
       - uses: actions/checkout@v3
+      - run: git tag ${{ github.event.inputs.tag }}
 
       - uses: goto-bus-stop/setup-zig@v2
         with:
