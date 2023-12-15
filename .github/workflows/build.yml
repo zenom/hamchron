@@ -4,20 +4,16 @@ on: workflow_dispatch
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-20.04
+    name: OTP / Elixir
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Elixir
-        uses: actions/setup-elixir@v1
+      - uses: actions/checkout@v3
+      - uses: erlef/setup-beam@v1
         with:
           otp-version: '26.2'
           elixir-version: '1.15.7'
-
-      - name: Install Dependencies
-        run: mix deps.get
+      - run: mix deps.get
+      - run: mix test
 
       - name: Build Release with Burrito
         run: MIX_ENV=prod mix release
