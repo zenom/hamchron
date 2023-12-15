@@ -19,9 +19,6 @@ jobs:
         with:
           version: 0.11.0
 
-      # - name: Build Zig
-      #   run: zig build
-
       - name: Install xz/7zip
         run: sudo apt-get install -y xz-utils p7zip-full
 
@@ -38,8 +35,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            _build/prod/hamchron-*.tar.gz
+            burrito_out/hamchron-*
           token: ${{ secrets.GITHUB_TOKEN }}
           release_name: Release ${{ github.sha }}
+          tag_name: ${{github.event.inputs.tag}}
           draft: false
           prerelease: false
