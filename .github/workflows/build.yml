@@ -35,7 +35,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            burrito_out/hamchron-*
+            burrito_out/hamchron_*
           token: ${{ secrets.GITHUB_TOKEN }}
           release_name: Release ${{ github.sha }}
           tag_name: ${{github.event.inputs.tag}}
