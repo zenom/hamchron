@@ -13,8 +13,8 @@ jobs:
         with:
           version: 0.11.0
 
-      - name: Build Zig
-        run: zig build
+      # - name: Build Zig
+      #   run: zig build
 
       - name: Install xz/7zip
         run: sudo apt-get install -y xz-utils p7zip-full
