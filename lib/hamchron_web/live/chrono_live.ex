@@ -35,8 +35,6 @@ defmodule HamchronWeb.ChronoLive do
   end
 
   def handle_info({:spots, details}, socket) do
-    IO.inspect("got spots")
-    IO.inspect(details)
     socket =
       socket |> push_event("load_psk", %{psk: details})
 
