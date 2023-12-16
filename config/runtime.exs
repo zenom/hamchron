@@ -50,7 +50,7 @@ if config_env() == :prod do
   config :hamchron, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :hamchron, HamchronWeb.Endpoint,
-    url: [host: "nerves.local"],
+    url: [host: "hamchron.local"],
     check_origin: false,
     http: [
       #   # Enable IPv6 and bind on all interfaces.
