@@ -27,6 +27,10 @@ You can also use the services file that is located in support to create a system
 
 - From here open a web browser and go to `http://localhost:8888` and you should see the web based hamchron.
 
+# Another way to run / online.
+
+- You can run this on your own web service as well. I use fly.io for the demo there are free and cheap ($5 mo) packages.
+
 # Things I had to learn
 
 - Elixir/Phoenix (still learning)
@@ -48,6 +52,9 @@ You can also use the services file that is located in support to create a system
 # Future
 
 - Would like to map contacts from QRZ and display on the map as well.
+- Center map on your grid square.
+- Layer filter to see spots by band instead of all.
+- Improve download/deploy.
 
 # Development
 
