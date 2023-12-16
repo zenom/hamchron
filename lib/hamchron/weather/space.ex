@@ -4,6 +4,6 @@ defmodule Hamchron.Weather.Space do
   of the data we get back from `Hamchron.Processors.Weather`
   """
   def latest() do
-    File.read!("weather.dat") |> :erlang.binary_to_term()
+    File.read!("/data/weather.dat") |> :erlang.binary_to_term()
   end
 end

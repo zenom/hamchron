@@ -16,7 +16,7 @@ defmodule Hamchron.Weather do
         {:ok, %{status_code: 200, body: body}} ->
           parsed_result = Weather.process(body)
           Logger.info("Weather data has been saved.")
-          File.write!("weather.dat", :erlang.term_to_binary(parsed_result))
+          File.write!("/data/weather.dat", :erlang.term_to_binary(parsed_result))
           Phoenix.PubSub.broadcast(Hamchron.PubSub, "weather_updated", {:weather, parsed_result})
           {:ok, body}
 
@@ -35,7 +35,7 @@ defmodule Hamchron.Weather do
       {:ok, %{status_code: 200, body: body}} ->
         parsed_result = Weather.process(body)
         Logger.info("Weather data has been saved.")
-        File.write!("weather.dat", :erlang.term_to_binary(parsed_result))
+        File.write!("/data/weather.dat", :erlang.term_to_binary(parsed_result))
         Phoenix.PubSub.broadcast(Hamchron.PubSub, "weather_updated", {:weather, parsed_result})
         {:ok, body}
 

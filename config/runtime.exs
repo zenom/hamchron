@@ -50,7 +50,7 @@ if config_env() == :prod do
   config :hamchron, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :hamchron, HamchronWeb.Endpoint,
-    url: [host: host, port: 8888],
+    url: [host: "nerves.local"],
     check_origin: false,
     http: [
       #   # Enable IPv6 and bind on all interfaces.
@@ -58,7 +58,7 @@ if config_env() == :prod do
       #   # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
       #   # for details about using IPv6 vs IPv4 and loopback vs public addresses.
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
-      port: port
+      port: 80
     ],
     secret_key_base: secret_key_base
 
