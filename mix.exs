@@ -75,21 +75,31 @@ defmodule Hamchron.MixProject do
     ]
   end
 
-  def releases do
-    [
-      hamchron: [
-        steps: [:assemble, &Burrito.wrap/1],
-        burrito: [
-          targets: [
-            macos: [os: :darwin, cpu: :x86_64],
-            macos_arm: [os: :darwin, cpu: :aarch64],
-            linux: [os: :linux, cpu: :x86_64],
-            linux_arm: [os: :linux, cpu: :aarch64]
-            # windows: [os: :windows, cpu: :x86_64]
-          ],
-          debug: Mix.env() != :prod
+  if System.get_env("FLY_DEPLOY") do 
+    def releases do
+      [
+        hamchron: [
+          steps: [:assemble]
         ]
       ]
-    ]
+    end
+  else
+    def releases do
+      [
+        hamchron: [
+          steps: [:assemble, &Burrito.wrap/1],
+          burrito: [
+            targets: [
+              macos: [os: :darwin, cpu: :x86_64],
+              macos_arm: [os: :darwin, cpu: :aarch64],
+              linux: [os: :linux, cpu: :x86_64],
+              linux_arm: [os: :linux, cpu: :aarch64]
+              # windows: [os: :windows, cpu: :x86_64]
+            ],
+            debug: Mix.env() != :prod
+          ]
+        ]
+      ]
+    end
   end
 end

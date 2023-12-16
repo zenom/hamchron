@@ -2,6 +2,8 @@
 
 A simple clock that shows UTC and local time, shows space weather, spots from PSKReporter, gray line etc.,
 
+View a demo [HERE](https://hamchron-summer-rain-4857.fly.dev/)
+
 <img width="2547" alt="Screenshot 2023-12-15 at 1 59 00 PM" src="https://github.com/zenom/hamchron/assets/175725/52c798b2-edc9-42d1-bfc8-ceaf042cdee1">
 
 This application is a learning experience for me. This is written in [elixir](https://elixir-lang.org/), [phoenix](https://www.phoenixframework.org/) & [tailwind css](https://tailwindcss.com/).
