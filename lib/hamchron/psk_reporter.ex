@@ -14,7 +14,9 @@ defmodule Hamchron.PskReporter do
     Logger.info("Fetching PSK Reporter info...")
 
     Task.start_link(fn ->
-      case get("https://retrieve.pskreporter.info/query") do
+      grid_square = Application.get_env(:hamchron, :grid_square)
+
+      case get("https://retrieve.pskreporter.info/query?encap=1&callsign=#{grid_square}&modify=grid") do
         {:ok, %{status_code: 200, body: body}} ->
           parsed_result = PskInfoProcessor.process(body)
           Phoenix.PubSub.broadcast(Hamchron.PubSub, "spots_updated", {:spots, parsed_result})
@@ -26,6 +28,7 @@ defmodule Hamchron.PskReporter do
 
         {:error, reason} ->
           # Handle the HTTP request error
+          Logger.error("Unable to fetch data: #{reason}")
           {:error, reason}
       end
     end)

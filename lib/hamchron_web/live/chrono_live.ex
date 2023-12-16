@@ -13,8 +13,12 @@ defmodule HamchronWeb.ChronoLive do
     end
     Hamchron.Weather.sync_fetch()
 
+    {:ok, latitude, longitude } = Application.get_env(:hamchron, :user_lat_long)
+
     socket =
-      socket |> assign(:ip_address, get_ip_address()) |> push_event("load_map", %{map: true})
+      socket 
+      |> assign(:ip_address, Application.get_env(:hamchron, :local_ip_address)) 
+      |> push_event("load_map", %{map: %{latitude: latitude, longitude: longitude}})
 
     {:ok, socket}
   end
@@ -22,7 +26,7 @@ defmodule HamchronWeb.ChronoLive do
   def handle_info({:weather, details}, socket) do
     send_update(SpaceWeatherComponent, id: "space-weather", details: details)
     send_update(SunspotsComponent, id: "sunspots", details: details)
-    send_update(SunImageComponent, id: "sunimage", details: details)
+    send_update(SunImageComponent, id: "sunimage")
     {:noreply, socket}
   end
 
@@ -31,13 +35,6 @@ defmodule HamchronWeb.ChronoLive do
       socket |> push_event("load_psk", %{psk: details})
 
     {:noreply, socket}
-  end
-
-  def get_ip_address() do
-    {:ok, ifs} = :inet.getif()
-    ips = Enum.map(ifs, fn {ip, _broadaddr, _mask} -> ip end)
-    {one, two, three, four} = ips |> List.first()
-    "#{one}.#{two}.#{three}.#{four}"
   end
 
   def render(assigns) do

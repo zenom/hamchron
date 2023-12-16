@@ -1,7 +1,7 @@
 <div>
   <header class="flex bg-slate-900 text-white justify-between py-2 px-2">
-    <Callsign.info callsign={System.get_env("CALLSIGN")} ip_address={@ip_address} />
-    <.live_component module={TimeComponent} id="time" />
+    <Callsign.info callsign={Application.get_env(:hamchron, :callsign)} ip_address={@ip_address} />
+    <TimeComponent.render />
     <.live_component module={SpaceWeatherComponent} id="space-weather" />
   </header>
 

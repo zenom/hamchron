@@ -6,7 +6,7 @@ defmodule WorldMapComponent do
   use HamchronWeb, :live_component
 
   def mount(socket) do
-    Hamchron.PskReporter.async_fetch_data()
+    # Hamchron.PskReporter.async_fetch_data()
     {:ok, socket}
   end
 

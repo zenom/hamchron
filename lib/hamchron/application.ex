@@ -7,6 +7,11 @@ defmodule Hamchron.Application do
 
   @impl true
   def start(_type, _args) do
+
+    Application.put_env(:hamchron, :local_ip_address, get_ip_address())
+    Application.put_env(:hamchron, :user_lat_long, user_lat_long())
+    Application.put_env(:hamchron, :callsign, System.get_env("CALLSIGN") || "YOURCALL")
+    Application.put_env(:hamchron, :grid_square, System.get_env("GRID_SQUARE") || "EN82ao")
     children = [
       HamchronWeb.Telemetry,
       # Hamchron.Repo,
@@ -25,6 +30,17 @@ defmodule Hamchron.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Hamchron.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  def user_lat_long() do
+    GridConverter.convert(System.get_env("GRID_SQUARE") || "EN82ao")
+  end
+
+  def get_ip_address() do
+    {:ok, ifs} = :inet.getif()
+    ips = Enum.map(ifs, fn {ip, _broadaddr, _mask} -> ip end)
+    {one, two, three, four} = ips |> List.first()
+    "#{one}.#{two}.#{three}.#{four}"
   end
 
   # Tell Phoenix to update the endpoint configuration

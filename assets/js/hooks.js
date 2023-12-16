@@ -9,14 +9,14 @@ let markers = [];
 
 Hooks.QsoMap = {
   mounted() {
-    this.handleEvent('load_map', (_) => {
-      this.doMap();
+    this.handleEvent('load_map', (data) => {
+      this.doMap(data.map.latitude, data.map.longitude);
       this.doDayLines();
       this.doMarkers();
     });
   },
-  doMap() {
-    map = L.map('world-map').setView([42.6073, -83.9294], 3);
+  doMap(latitude, longitude) {
+    map = L.map('world-map').setView([latitude, longitude], 3);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       minZoom: 4,
       maxZoom: 6,
@@ -80,7 +80,7 @@ Hooks.QsoMap = {
       }
 
       let myRenderer = L.canvas({ padding: 0.5 });
-      for (var i = 0; i < info['psk'].length; i++) {
+      for (var i = 0; i < 2000; i++) {
         var lat = info['psk'][i][0];
         var lon = info['psk'][i][1];
         var callsign = info['psk'][i][2];
@@ -107,8 +107,9 @@ Hooks.QsoMap = {
 
 function setTime() {
   dayjs.extend(utc);
-  var utc_time = dayjs().utc().format('HH:mm:ss');
-  var local_time = dayjs().format('MMMM DD, YYYY HH:mm:ss');
+  var current_time = dayjs();
+  var utc_time = current_time.utc().format('HH:mm:ss');
+  var local_time = current_time.format('MMMM DD, YYYY HH:mm:ss');
   document.getElementById('utc_time').innerHTML = utc_time;
   document.getElementById('local_time').innerHTML = local_time;
 }
