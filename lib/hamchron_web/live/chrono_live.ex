@@ -11,7 +11,11 @@ defmodule HamchronWeb.ChronoLive do
       Phoenix.PubSub.subscribe(Hamchron.PubSub, "weather_updated")
       Phoenix.PubSub.subscribe(Hamchron.PubSub, "spots_updated")
     end
-    Hamchron.Weather.sync_fetch()
+
+    # gotta be a better place to put this
+    unless File.exists?('weather.dat') || File.exists?("/data/weather.dat") do 
+      Hamchron.Weather.sync_fetch()
+    end
 
     {:ok, latitude, longitude } = Application.get_env(:hamchron, :user_lat_long)
 
@@ -31,6 +35,8 @@ defmodule HamchronWeb.ChronoLive do
   end
 
   def handle_info({:spots, details}, socket) do
+    IO.inspect("got spots")
+    IO.inspect(details)
     socket =
       socket |> push_event("load_psk", %{psk: details})
 

@@ -12,6 +12,7 @@ defmodule Hamchron.Application do
     Application.put_env(:hamchron, :user_lat_long, user_lat_long())
     Application.put_env(:hamchron, :callsign, System.get_env("CALLSIGN") || "YOURCALL")
     Application.put_env(:hamchron, :grid_square, System.get_env("GRID_SQUARE") || "EN82ao")
+
     children = [
       HamchronWeb.Telemetry,
       # Hamchron.Repo,
