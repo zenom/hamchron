@@ -31,6 +31,14 @@ You can also use the services file that is located in support to create a system
 
 - You can run this on your own web service as well. I use fly.io for the demo there are free and cheap ($5 mo) packages.
 
+# Yet another way
+
+- You can download this repo and run the app yourelf.
+
+# Standalone Firmware
+
+- Take a look at the nerves branch and it will allow you to build a firmware for a rasberry pi. You would need a separte browser to display.
+
 # Things I had to learn
 
 - Elixir/Phoenix (still learning)
@@ -45,14 +53,13 @@ You can also use the services file that is located in support to create a system
 
 - Gets space weather from N0NBH every hour.
 - Gets sun images every hour.
-- Gets latest spots every 5 mins from PSK Reporter.
-- Display spots (around 6k) on the map and highlight them by band.
-  - Popup that shows the Callsign, Band & Mode when clicked on.
+- Realtime spots (1000) from PSK Reporter, dynamically updated.
+- Display spots on the map and highlight them by band.
+  - Popup that shows the Callsign, Band, Mode & Grid Square heard when clicked on.
 
 # Future
 
 - Would like to map contacts from QRZ and display on the map as well.
-- Center map on your grid square.
 - Layer filter to see spots by band instead of all.
 - Improve download/deploy.
 
