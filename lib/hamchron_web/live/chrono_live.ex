@@ -9,7 +9,6 @@ defmodule HamchronWeb.ChronoLive do
   def mount(_params, _session, socket) do
     if connected?(socket) do
       Phoenix.PubSub.subscribe(Hamchron.PubSub, "weather_updated")
-      # Phoenix.PubSub.subscribe(Hamchron.PubSub, "spots_updated")
       Phoenix.PubSub.subscribe(Hamchron.PubSub, "new_spot")
     end
 
@@ -29,7 +28,6 @@ defmodule HamchronWeb.ChronoLive do
   end
 
   def handle_info({:new_spot, detail}, socket) do 
-    # IO.puts("GOT A SPOT")
     socket =
       socket |> push_event("new_spot", %{spot: detail})
     {:noreply, socket}
@@ -47,7 +45,7 @@ defmodule HamchronWeb.ChronoLive do
     ~H"""
     <div class="flex w-full z-0">
       <div class="flex w-full h-[calc(100vh-168px)] lg:relative">
-        <.live_component module={WorldMapComponent} id="world-map" />
+        <WorldMapComponent.render />
       </div>
       <div class="absolute right-0 z-10 w-64 bg-slate-800/30">
         <.live_component module={SunspotsComponent} id="sunspots" />

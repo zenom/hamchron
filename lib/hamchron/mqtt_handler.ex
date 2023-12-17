@@ -11,9 +11,9 @@ defmodule Hamchron.MqttHandler do
 
   def handle_message(_topic, payload, state) do
     contact = Jason.decode(payload)
-    {:ok, %{"b" => band, "md" => mode, "sc" => sender, "sl" => sender_grid}} = contact
+    {:ok, %{"b" => band, "md" => mode, "sc" => sender, "sl" => sender_grid, "rl" => recv_grid}} = contact
     {:ok, latitude, longitude} = GridConverter.convert(sender_grid)
-    parsed_result = %{band: band, mode: mode, sender: sender, grid: sender_grid, lat: latitude, lon: longitude}
+    parsed_result = %{band: band, mode: mode, sender: sender, grid: sender_grid, recv_grid: recv_grid, lat: latitude, lon: longitude}
 
     # IO.inspect(parsed_result)
     Phoenix.PubSub.broadcast(Hamchron.PubSub, "new_spot", {:new_spot, parsed_result})

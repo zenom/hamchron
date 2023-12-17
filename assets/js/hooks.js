@@ -45,23 +45,13 @@ Hooks.QsoMap = {
     }, 120000); // Every two minutes
   },
   doMarkers() {
-    const markerIcon = L.icon({
-      iconSize: [12, 15],
-      shadowSize: [12, 15],
-      iconAnchor: [12, 15],
-      shadowAnchor: [11, 12],
-      popupAnchor: [0, -5],
-      iconUrl: '/assets/images/marker-icon.png',
-      shadowUrl: '/assets/images/marker-shadow.png',
-    });
-
     var band_colors = {
-      '160m': '#0f172a',
-      '80m': '#4A4238',
+      '160m': '#16a34a',
+      '80m': '#84cc16',
       '60m': '#f97316',
-      '40m': '#4D5359',
+      '40m': '#f97316',
       '30m': '#3f6212',
-      '20m': '#508484',
+      '20m': '#ef4444',
       '17m': '#14b8a6',
       '15m': '#06b6d4',
       '12m': '#6366f1',
@@ -73,79 +63,36 @@ Hooks.QsoMap = {
       '33cm': '#1e1b4b',
     };
     this.handleEvent('new_spot', (spot) => {
-      // console.log(spot);
       var band = spot.spot.band;
       var mode = spot.spot.mode;
       var sender = spot.spot.sender;
-      // var _grid = spot.grid;
+      var grid = spot.spot.recv_grid;
       var lat = spot.spot.lat;
       var lon = spot.spot.lon;
-      // let myRenderer = L.canvas({ padding: 0.5 });
       var marker = L.circleMarker([lat, lon], {
-        icon: markerIcon,
-        // renderer: myRenderer,
-        radius: 1,
-        width: 1,
+        radius: 3,
+        width: 3,
         color: band_colors[band],
         fillColor: band_colors[band],
-        fillOpacity: 0.8,
+        fillOpacity: 1,
         fill: true,
       }).addTo(map);
-      // console.log('Added ');
       marker.bindPopup(
-        '<strong>' + sender + '</strong><br/>' + mode + '/' + band,
+        '<strong>' +
+          sender +
+          '</strong><br/>' +
+          mode +
+          '/' +
+          band +
+          '<br/> Heard: ' +
+          grid,
       );
-      //markers.push(marker);
-
-      // for (var i = 0; i < 2000; i++) {
-      //   var lat = info['psk'][i][0];
-      //   var lon = info['psk'][i][1];
-      //   var callsign = info['psk'][i][2];
-      //   var band = info['psk'][i][3];
-      //   var mode = info['psk'][i][4];
-      //   var marker = L.circleMarker([lat, lon], {
-      //     icon: markerIcon,
-      //     renderer: myRenderer,
-      //     radius: 1,
-      //     width: 1,
-      //     color: band_colors[band],
-      //     fillColor: band_colors[band],
-      //     fillOpacity: 0.8,
-      //     fill: true,
-      //   }).addTo(map);
-      //   marker.bindPopup(
-      //     '<strong>' + callsign + '</strong><br/>' + mode + '/' + band,
-      //   );
-      //   markers.push(marker);
-      // }
+      markers.push(marker);
+      if (markers.length >= 1000) {
+        remove = markers.shift();
+        map.removeLayer(remove);
+      }
     });
-
-    // this.handleEvent('load_psk', (info) => {
-    //   markers = [];
-    //
-    //   let myRenderer = L.canvas({ padding: 0.5 });
-    //   for (var i = 0; i < 2000; i++) {
-    //     var lat = info['psk'][i][0];
-    //     var lon = info['psk'][i][1];
-    //     var callsign = info['psk'][i][2];
-    //     var band = info['psk'][i][3];
-    //     var mode = info['psk'][i][4];
-    //     var marker = L.circleMarker([lat, lon], {
-    //       icon: markerIcon,
-    //       renderer: myRenderer,
-    //       radius: 1,
-    //       width: 1,
-    //       color: band_colors[band],
-    //       fillColor: band_colors[band],
-    //       fillOpacity: 0.8,
-    //       fill: true,
-    //     }).addTo(map);
-    //     marker.bindPopup(
-    //       '<strong>' + callsign + '</strong><br/>' + mode + '/' + band,
-    //     );
-    //     markers.push(marker);
-    //   }
-    // });
   },
 };
 
