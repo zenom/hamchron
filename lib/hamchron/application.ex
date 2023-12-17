@@ -27,6 +27,14 @@ defmodule Hamchron.Application do
       Hamchron.Schedule
     ]
 
+      IO.inspect("RUNNING MQTT FOR #{Application.get_env(:hamchron, :grid_square) |> String.slice(0..3)}")
+    Tortoise.Supervisor.start_child(
+      client_id: "hamchron",
+      handler: {Hamchron.MqttHandler, []},
+      server: {Tortoise.Transport.Tcp, host: 'mqtt.pskreporter.info', port: 1883},
+      subscriptions: [{"pskr/filter/v2/+/+/+/+/+/#{Application.get_env(:hamchron, :grid_square) |> String.slice(0..3)}/+/+", 0}])
+
+
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Hamchron.Supervisor]

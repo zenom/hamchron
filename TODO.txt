@@ -1,3 +1,10 @@
 1. Add QRZ api key to fetch
 2. Filter options to show only certain bands, modes.
 3. Fix why map does not autoload after failure/restart service.
+
+Tortoise.Supervisor.start_child(
+    client_id: "hamchron",
+    handler: {Hamchron.MqttHandler, []},
+    server: {Tortoise.Transport.Tcp, host: 'mqtt.pskreporter.info', port: 1883},
+    subscriptions: [{"pskr/filter/v2/+/+/+/+/+/EN82/+/+", 0}])
+

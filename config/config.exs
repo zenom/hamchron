@@ -25,9 +25,22 @@ config :hamchron, HamchronWeb.Endpoint,
 
 config :hamchron, Hamchron.Schedule,
   jobs: [
-    {"*/5 * * * *", {Hamchron.PskReporter, :async_fetch_data, []}},
     {"@hourly", {Hamchron.Weather, :async_fetch_data, []}}
   ]
+
+# Tortoise.Supervisor.start_child(
+#     client_id: "hamchron",
+#     handler: {Tortoise.Handler.Logger, []},
+#     server: {Tortoise.Transport.Tcp, host: 'mqtt.pskreporter.info', port: 1883},
+#     subscriptions: [{"psk/filter/v2", 0}])
+
+# config :hamchron, Hamchron.MqttClient,
+#   server: {Tortoise.Transport.Tcp, host: "mqtt.pskreporter.info", port: 1886},
+#   client_id: "hamchron",
+#   # username: "optional_username",
+#   # password: "optional_password",
+#   handler: {Hamchron.MqttHandler, []},
+#   subscriptions: [{"pskr/filter/v2/+/+/+/+/+/#{Application.get_env(:hamchron, :grid_square)}/+/+", 0}]
 
 # Configures the mailer
 #

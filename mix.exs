@@ -56,7 +56,8 @@ defmodule Hamchron.MixProject do
       {:httpoison, "~> 2.0"},
       {:quantum, "~> 3.5"},
       {:burrito, "~> 1.0"},
-      {:sweet_xml, "~> 0.7.1"}
+      {:sweet_xml, "~> 0.7.1"},
+      {:tortoise, "~> 0.10.0"}
     ]
   end
 

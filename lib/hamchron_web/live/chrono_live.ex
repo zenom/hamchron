@@ -9,7 +9,8 @@ defmodule HamchronWeb.ChronoLive do
   def mount(_params, _session, socket) do
     if connected?(socket) do
       Phoenix.PubSub.subscribe(Hamchron.PubSub, "weather_updated")
-      Phoenix.PubSub.subscribe(Hamchron.PubSub, "spots_updated")
+      # Phoenix.PubSub.subscribe(Hamchron.PubSub, "spots_updated")
+      Phoenix.PubSub.subscribe(Hamchron.PubSub, "new_spot")
     end
 
     # gotta be a better place to put this
@@ -27,6 +28,13 @@ defmodule HamchronWeb.ChronoLive do
     {:ok, socket}
   end
 
+  def handle_info({:new_spot, detail}, socket) do 
+    # IO.puts("GOT A SPOT")
+    socket =
+      socket |> push_event("new_spot", %{spot: detail})
+    {:noreply, socket}
+  end
+
   def handle_info({:weather, details}, socket) do
     send_update(SpaceWeatherComponent, id: "space-weather", details: details)
     send_update(SunspotsComponent, id: "sunspots", details: details)
@@ -34,12 +42,6 @@ defmodule HamchronWeb.ChronoLive do
     {:noreply, socket}
   end
 
-  def handle_info({:spots, details}, socket) do
-    socket =
-      socket |> push_event("load_psk", %{psk: details})
-
-    {:noreply, socket}
-  end
 
   def render(assigns) do
     ~H"""
