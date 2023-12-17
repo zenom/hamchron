@@ -31,6 +31,11 @@ jobs:
           elixir-version: '1.15.7'
       - run: mix deps.get
 
+      - name: Compile Assets
+        run: |
+          mix assets.build
+          mix assets.deploy
+
       - name: Build Release with Burrito
         run: MIX_ENV=prod mix release
 
