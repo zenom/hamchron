@@ -46,8 +46,8 @@ defmodule SpaceWeatherComponent do
 
   def render(assigns) do
     ~H"""
-    <div class="flex table-auto justify-end">
-      <table class="text-xs lg:text-sm">
+    <div class="portrait:hidden absolute top-0 right-0 mt-20 py-0 z-10 lg:relative lg:flex table-auto justify-end">
+      <table class="text-xs">
         <thead>
           <tr>
             <td class="text-center">Band</td>

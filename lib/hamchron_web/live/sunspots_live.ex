@@ -36,7 +36,7 @@ defmodule HamchronWeb.SunspotsComponent do
 
   def render(assigns) do
     ~H"""
-    <div class="">
+    <div class="hidden">
       <div class="text-white bg-black/20 w-64 p-2 relative">
         <table class="table-auto w-full">
           <tr>

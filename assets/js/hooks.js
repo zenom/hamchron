@@ -65,10 +65,7 @@ Hooks.QsoMap = {
     });
   },
   doMap(latitude, longitude) {
-    map = L.map('world-map', {
-      center: [latitude, longitude],
-      zoom: 3,
-    });
+    map = L.map('world-map').setView([latitude, longitude], 4);
 
     for (let i = 0; i < bands.length; i++) {
       layers[bands[i]] = L.layerGroup([]);
@@ -89,8 +86,11 @@ Hooks.QsoMap = {
       .layers(null, layers, { position: 'bottomleft' })
       .addTo(map);
 
-    var bounds = map.getBounds(); // Get the current bounds of the map
-    map.setMaxBounds(bounds);
+    // is this throwing off the center location? My grid?
+    map.setMaxBounds([
+      [-90, -180], // South-West
+      [90, 180], // North-East
+    ]);
     map.on('drag', function () {
       map.panInsideBounds(bounds, { animate: false });
     });
