@@ -64,6 +64,9 @@ Hooks.QsoMap = {
       this.doMarkers();
     });
   },
+  disconnected() {
+    map.remove();
+  },
   doMap(latitude, longitude) {
     map = L.map('world-map').setView([latitude, longitude], 4);
 
