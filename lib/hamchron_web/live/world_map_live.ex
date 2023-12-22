@@ -11,7 +11,7 @@ defmodule WorldMapComponent do
     <div class="w-full">
       <div id="data-coords" />
 
-      <div class="h-full z-0" phx-hook="QsoMap" id="world-map">
+      <div class="h-full w-full z-0 text-center align-middle pt-10 text-4xl xl:text-6xl" phx-hook="QsoMap" id="world-map">
         ... loading map ...
       </div>
     </div>
