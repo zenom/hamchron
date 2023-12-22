@@ -47,7 +47,7 @@ defmodule HamchronWeb.ChronoLive do
       <div class="h-[calc(100vh-68px)] md:portrait:h-[calc(100vh-80px)] lg:landscape:lg:h-[calc(100vh-124px)] lg:portrait:h-[calc(100vh-84px)] xl:landscape:h-[calc(100vh-144px)] flex w-full 2xl:landscape:h-[calc(100vh-176px)] lg:relative">
         <WorldMapComponent.render />
       </div>
-      <div class="absolute right-0 z-10 w-64 bg-slate-800/30">
+      <div class="invisible 2xl:visible absolute right-0 z-10 w-64 bg-slate-800/30">
         <.live_component module={SunspotsComponent} id="sunspots" />
         <.live_component module={SunImageComponent} id="sunimage" />
       </div>

@@ -36,8 +36,8 @@ defmodule HamchronWeb.SunspotsComponent do
 
   def render(assigns) do
     ~H"""
-    <div class="hidden 2xl:block">
-      <div class="text-white bg-black/20 w-64 p-2 relative">
+    <div>
+      <div class="xl:visible text-white bg-black/20 w-64 p-2 2xl:relative">
         <table class="table-auto w-full">
           <tr>
             <td class="text-left text-sm">Sunpots:</td>

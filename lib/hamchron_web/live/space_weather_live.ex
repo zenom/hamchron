@@ -46,7 +46,7 @@ defmodule SpaceWeatherComponent do
 
   def render(assigns) do
     ~H"""
-    <div class="hidden portrait:hidden landscape:block absolute top-0 right-0 mt-20 z-10 lg:mt-0 lg:relative text-xl lg:flex table-auto justify-end">
+    <div class="invisible portrait:hidden landscape:visible absolute top-0 right-0 mt-20 z-10 lg:mt-0 lg:relative text-xl lg:flex table-auto justify-end">
       <table class="text-xs xl:text-sm 2xl:text-base">
         <thead>
           <tr>
