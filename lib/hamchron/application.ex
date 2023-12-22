@@ -46,11 +46,16 @@ defmodule Hamchron.Application do
   end
 
   def get_ip_address() do
-    {:ok, ifs} = :inet.getif()
-    ips = Enum.map(ifs, fn {ip, _broadaddr, _mask} -> ip end)
-    {one, two, three, four} = ips |> List.first()
+    ip = :inet.getifaddrs()
+      |> elem(1)
+      |> Map.new()
+      |> Map.get('en1')
+      |> Keyword.get_values(:addr)
+      |> Enum.find(&match?({_, _, _, _}, &1))
+    {one, two, three, four} = ip
     "#{one}.#{two}.#{three}.#{four}"
   end
+
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
