@@ -2,7 +2,8 @@
 
 A simple clock that shows UTC and local time, shows space weather, spots from PSKReporter, gray line etc.,
 
-<img width="2529" alt="Screenshot 2023-12-17 at 2 50 17 PM" src="https://github.com/zenom/hamchron/assets/175725/ce09974d-424c-4754-b906-fce47592ef7a">
+<img width="3006" alt="Screenshot 2023-12-22 at 12 00 39 PM" src="https://github.com/zenom/hamchron/assets/175725/6d351153-ff0f-4732-8c20-a41bc3e203b1">
+
 
 View a demo [HERE](https://hamchron-summer-rain-4857.fly.dev/)
 
