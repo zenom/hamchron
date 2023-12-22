@@ -33,6 +33,13 @@ You can also use the services file that is located in support to create a system
 
 - From here open a web browser and go to `http://localhost:8888` and you should see the web based hamchron.
 
+# RECOMMENDED - My favorite method:
+
+- Install DietPI on a RasberryPI.
+- Use Kiosk mode. [DietPi Kiosk](https://dietpi.com/docs/software/desktop/#chromium)
+- Make sure the hamchron binary is set to run at boot using the service scrpit provided in the support folder.
+- Set the kiosk config to run http://localhost:8888 at start up. Will run a stand alone Hamchron.
+
 # Another way to run / online.
 
 - You can run this on your own web service as well. I use fly.io for the demo there are free and cheap ($5 mo) packages.
@@ -40,10 +47,6 @@ You can also use the services file that is located in support to create a system
 # Yet another way
 
 - You can download this repo and run the app yourelf.
-
-# Standalone Firmware
-
-- Take a look at the nerves branch and it will allow you to build a firmware for a rasberry pi. You would need a separte browser to display.
 
 # Things I had to learn
 
@@ -62,11 +65,11 @@ You can also use the services file that is located in support to create a system
 - Realtime spots (1000) from PSK Reporter, dynamically updated.
 - Display spots on the map and highlight them by band.
   - Popup that shows the Callsign, Band, Mode & Grid Square heard when clicked on.
+- Layer filter to see spots by band instead of all.
 
 # Future
 
 - Would like to map contacts from QRZ and display on the map as well.
-- Layer filter to see spots by band instead of all.
 - Improve download/deploy.
 
 # Development
