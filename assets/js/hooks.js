@@ -86,14 +86,10 @@ Hooks.QsoMap = {
       .layers(null, layers, { position: 'bottomleft' })
       .addTo(map);
 
-    // is this throwing off the center location? My grid?
     map.setMaxBounds([
       [-90, -180], // South-West
       [90, 180], // North-East
     ]);
-    map.on('drag', function () {
-      map.panInsideBounds(bounds, { animate: false });
-    });
   },
   doDayLines() {
     var t = terminator({
