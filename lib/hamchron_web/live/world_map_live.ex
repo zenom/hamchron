@@ -9,10 +9,10 @@ defmodule WorldMapComponent do
   def render(assigns) do
     ~H"""
     <div class="w-full">
-      <div id="data-coords" />
-
-      <div class="h-full w-full z-0 text-center align-middle pt-10 text-4xl xl:text-6xl" phx-hook="QsoMap" id="world-map">
-        ... loading map ...
+      <div class="h-full w-full z-0 text-center align-middle pt-10" phx-hook="QsoMap" id="world-map">
+        <div class="pt-10 text-3xl xl:text-7xl">
+          ... loading map ...
+        </div>
       </div>
     </div>
     """
