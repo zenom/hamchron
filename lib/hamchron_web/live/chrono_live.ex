@@ -44,7 +44,7 @@ defmodule HamchronWeb.ChronoLive do
   def render(assigns) do
     ~H"""
     <div class="flex w-full z-0">
-      <div class="h-[calc(100vh-68px)] md:portrait:h-[calc(100vh-80px)] lg:landscape:lg:h-[calc(100vh-124px)] lg:portrait:h-[calc(100vh-84px)] xl:landscape:h-[calc(100vh-144px)] flex w-full 2xl:landscape:h-[calc(100vh-169px)] lg:relative">
+      <div class="h-[calc(100vh-68px)] md:portrait:h-[calc(100vh-80px)] lg:landscape:lg:h-[calc(100vh-124px)] lg:portrait:h-[calc(100vh-84px)] xl:landscape:h-[calc(100vh-144px)] flex w-full 2xl:landscape:h-[calc(100vh-170px)] lg:relative">
         <WorldMapComponent.render />
       </div>
       <div class="invisible 2xl:visible absolute right-0 z-10 w-64 bg-slate-800/30">
