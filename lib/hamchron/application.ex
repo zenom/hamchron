@@ -52,8 +52,11 @@ defmodule Hamchron.Application do
       |> Map.get('en1')
       |> Keyword.get_values(:addr)
       |> Enum.find(&match?({_, _, _, _}, &1))
-    {one, two, three, four} = ip
-    "#{one}.#{two}.#{three}.#{four}"
+
+    case ip do
+      {one, two, three, four} = ip -> "#{one}.#{two}.#{three}.#{four}"
+      _ -> "unknown"
+    end
   end
 
 
