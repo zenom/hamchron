@@ -21,7 +21,7 @@ defmodule HamchronWeb.SunImageComponent do
   def render(assigns) do
     ~H"""
     <div>
-      <div class="hidden justify-between flex flex-wrap text-white bg-black/20 rounded-bl-lg w-64 p-2 relative">
+      <div class="hidden 2xl:block justify-between flex flex-wrap text-white bg-black/20 rounded-bl-lg w-64 p-2 relative">
         <div class="pt-2">
           <img
             src="https://umbra.nascom.nasa.gov/images/latest_aia_304.gif"
