@@ -163,15 +163,16 @@ Hooks.QsoMap = {
 function setTime() {
   dayjs.extend(utc);
   var current_time = dayjs();
-  var utc_time = current_time.utc().format('HH:mm:ss');
-  var local_time = current_time.format('MMMM DD, YYYY HH:mm:ss');
+  var utc_time = current_time.utc().format('HH:mm');
+  var local_time = current_time.format('dddd, MMM DD, YYYY HH:mm A');
   document.getElementById('utc_time').innerHTML = utc_time;
   document.getElementById('local_time').innerHTML = local_time;
 }
 
 Hooks.SetTime = {
   mounted() {
-    setInterval(setTime, 1000);
+    setTime();
+    setInterval(setTime, 3000);
   },
 };
 
